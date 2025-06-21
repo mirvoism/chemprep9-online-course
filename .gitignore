@@ -1,0 +1,89 @@
+# Dependencies
+node_modules
+dist
+dist-ssr
+*.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Build outputs
+.vite/
+dist/
+build/
+
+# Environment variables and secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+
+# Backup files and temporary files
+*.backup
+*.backup-*
+*_backup*
+*_temp*
+temp_*
+*.tmp
+*.temp
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Testing
+coverage/
+.nyc_output
+
+# Cache directories
+.cache/
+.parcel-cache/
+.eslintcache
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Project-specific exclusions
+backups/
+temp_broken_units/
+App*.backup*
+App_backup*
+App_test.tsx
+current_viewer.txt
+new_practice_section.txt
+original_practice_section.txt
+temp_current_file.tsx
+temp_header.txt
+temp_new_viewer.tsx
+*Enhanced.ts.backup*
+*Enhanced.ts-e
+quick-lesson-test.js
+test_fixed_units.js
+test_units.js
+
+# Keep memory system but exclude sensitive data
+.cursor-memory/
+!.cursor-memory/memory.json

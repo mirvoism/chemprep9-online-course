@@ -1,0 +1,153 @@
+{
+  "audit_date": "2025-06-08",
+  "app_name": "ChemPrep9",
+  "auditor": "Senior UI/UX Engineer",
+  "issues": [
+    {
+      "id": "PALETTE-001",
+      "severity": "high",
+      "category": "Color Palette",
+      "file": "tailwind.config.js",
+      "component": "Root Color System",
+      "description": "Color palette doesn't follow 60-30-10 rule with navy/teal/coral specification",
+      "current_state": "Using chemistry grays, soft pastels, no clear primary/secondary/accent hierarchy",
+      "recommended_fix": "Implement navy (#0E2A47) as primary 60%, teal (#1B8A8F) as secondary 30%, coral (#F76C5E) as accent 10%",
+      "impact": "Lacks modern 2025 aesthetic, doesn't establish clear visual hierarchy"
+    },
+    {
+      "id": "PALETTE-002", 
+      "severity": "high",
+      "category": "Dark Mode",
+      "file": "tailwind.config.js",
+      "component": "Theme System",
+      "description": "No dark mode tokens or CSS variables system",
+      "current_state": "Light mode only with hardcoded colors",
+      "recommended_fix": "Add dark mode variants: #101418 bg, #E2E6EA text, #236C70 secondary, #FF8B7A accent",
+      "impact": "Not accessible for users preferring dark mode, not 2025-current"
+    },
+    {
+      "id": "CONTRAST-001",
+      "severity": "medium", 
+      "category": "Accessibility",
+      "file": "global.css / Components",
+      "component": "Text Colors",
+      "description": "Need to verify WCAG AA compliance (4.5:1 ratio) with new palette",
+      "current_state": "Current soft colors may not meet contrast requirements",
+      "recommended_fix": "Test and adjust all text/background combinations for 4.5:1 minimum",
+      "impact": "Accessibility compliance risk"
+    },
+    {
+      "id": "TYPOGRAPHY-001",
+      "severity": "medium",
+      "category": "Typography",
+      "file": "global.css",
+      "component": "Font System",
+      "description": "Missing clear typographic scale and hierarchy", 
+      "current_state": "Basic Inter font, no defined scale levels",
+      "recommended_fix": "Implement 32/24/16/14px scale with Inter (body) + Poppins (headings)",
+      "impact": "Weak visual hierarchy, readability concerns"
+    },
+    {
+      "id": "LAYOUT-001",
+      "severity": "medium",
+      "category": "Layout",
+      "file": "App.tsx",
+      "component": "Grid System",
+      "description": "Inconsistent spacing, not following 8pt grid system",
+      "current_state": "Mixed spacing values, some arbitrary padding/margins",
+      "recommended_fix": "Standardize on 8pt grid (8px, 16px, 24px, 32px, etc.)",
+      "impact": "Visual inconsistency, unprofessional appearance"
+    },
+    {
+      "id": "LAYOUT-002",
+      "severity": "low",
+      "category": "Border Radius",
+      "file": "Components",
+      "component": "Cards and Buttons",
+      "description": "Border radius could be more consistent with 2025 standards",
+      "current_state": "Mixed radius values (rounded-lg, rounded-xl)",
+      "recommended_fix": "Standardize on 12-16px radius for cards, 8px for buttons",
+      "impact": "Minor visual inconsistency"
+    },
+    {
+      "id": "FOCUS-001",
+      "severity": "high",
+      "category": "Accessibility",
+      "file": "Button.tsx, Card.tsx",
+      "component": "Focus States",
+      "description": "Focus indicators may not be visible enough with new palette",
+      "current_state": "Basic focus rings using chemistry colors",
+      "recommended_fix": "High-contrast focus indicators with 2px minimum thickness",
+      "impact": "Keyboard navigation accessibility"
+    },
+    {
+      "id": "MOTION-001",
+      "severity": "low",
+      "category": "Animations",
+      "file": "global.css",
+      "component": "Transitions",
+      "description": "No prefers-reduced-motion support",
+      "current_state": "Animations always enabled",
+      "recommended_fix": "Add prefers-reduced-motion queries to disable animations",
+      "impact": "Accessibility for motion-sensitive users"
+    },
+    {
+      "id": "CHEMISTRY-001",
+      "severity": "low",
+      "category": "Theming",
+      "file": "App.tsx",
+      "component": "Chemistry Motifs",
+      "description": "Missing subtle chemistry-themed design elements",
+      "current_state": "Generic design with chemistry colors only",
+      "recommended_fix": "Add periodic table line icons, hex-lattice backgrounds",
+      "impact": "Missed opportunity for subject matter integration"
+    },
+    {
+      "id": "FEEDBACK-001",
+      "severity": "medium",
+      "category": "Interactions",
+      "file": "Cards, Buttons",
+      "component": "Micro-interactions",
+      "description": "Hover/focus states could be more refined for learning context",
+      "current_state": "Basic hover effects",
+      "recommended_fix": "Add subtle <200ms micro-interactions that aid learning (element hover shows atomic number)",
+      "impact": "Missed opportunities for educational enhancement"
+    }
+  ],
+  "summary": {
+    "total_issues": 9,
+    "high_severity": 3,
+    "medium_severity": 4, 
+    "low_severity": 2,
+    "estimated_fix_time": "6-8 hours",
+    "priority_order": [
+      "PALETTE-001",
+      "PALETTE-002", 
+      "FOCUS-001",
+      "TYPOGRAPHY-001",
+      "CONTRAST-001",
+      "LAYOUT-001",
+      "FEEDBACK-001",
+      "MOTION-001",
+      "LAYOUT-002",
+      "CHEMISTRY-001"
+    ]
+  },
+  "recommendations": {
+    "immediate": [
+      "Implement new color palette with CSS variables",
+      "Add dark mode support",
+      "Fix focus indicators for accessibility"
+    ],
+    "short_term": [
+      "Implement typography scale",
+      "Standardize spacing on 8pt grid",
+      "Add contrast testing"
+    ],
+    "nice_to_have": [
+      "Add chemistry-themed design elements",
+      "Enhance micro-interactions",
+      "Add motion preferences"
+    ]
+  }
+} 

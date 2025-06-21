@@ -1,0 +1,506 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 2025 Modern Chemistry App - Design System */
+
+/* CSS Variables for dynamic theming */
+:root {
+  /* Light theme - 60-30-10 palette */
+  --color-primary: #0E2A47;
+  --color-secondary: #1B8A8F;
+  --color-accent: #F76C5E;
+  --color-bg: #f0f4f8;
+  --color-surface: #ffffff;
+  --color-text: #0E2A47;
+  --color-text-muted: #2563a0;
+  --color-border: #a6c1dc;
+  
+  /* Chemistry theme backgrounds */
+  --color-chemistry-blue: #e0f2fe;
+  --color-chemistry-sage: #f0f4f0;
+  --color-chemistry-lavender: #f3f1ff;
+  --color-chemistry-peach: #fff8f5;
+  --color-chemistry-mint: #f0fdf4;
+  --color-chemistry-rose: #fff1f2;
+}
+
+/* Dark theme */
+.dark {
+  --color-primary: #E2E6EA;
+  --color-secondary: #236C70;
+  --color-accent: #FF8B7A;
+  --color-bg: #0f172a;
+  --color-surface: #1e293b;
+  --color-text: #E2E6EA;
+  --color-text-muted: #94a3b8;
+  --color-border: #334155;
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px; /* Base 16px for accessibility */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.75; /* Improved readability */
+}
+
+/* Enhanced button and focus styles */
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* High-contrast focus indicators for accessibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(247, 108, 94, 0.2);
+}
+
+.dark button:focus-visible,
+.dark a:focus-visible,
+.dark input:focus-visible,
+.dark textarea:focus-visible,
+.dark select:focus-visible {
+  outline-color: var(--color-accent);
+  box-shadow: 0 0 0 4px rgba(255, 139, 122, 0.2);
+}
+
+/* Enhanced card styles */
+.glass-card {
+  background: var(--color-surface);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem; /* 16px standardized */
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.15s ease-out;
+}
+
+.glass-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-card {
+    transition: none;
+  }
+  .glass-card:hover {
+    transform: none;
+  }
+}
+
+/* Gradient Text - Softer */
+.gradient-text {
+  background: linear-gradient(135deg, #64748b, #94a3b8, #cbd5e1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom Scrollbar - Gentler */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(148, 163, 184, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.6);
+}
+
+/* Custom Progress Bar - Soft Colors */
+.progress-bar {
+  position: relative;
+  overflow: hidden;
+  border-radius: 9999px;
+  background-color: rgba(148, 163, 184, 0.15);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #94a3b8, #64748b);
+  border-radius: 9999px;
+  transition: width 0.5s ease-out;
+  position: relative;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Reading-friendly text styles */
+.text-primary {
+  color: #1e293b;
+}
+
+.text-secondary {
+  color: #64748b;
+}
+
+.text-muted {
+  color: #94a3b8;
+}
+
+/* Soft focus states */
+.focus-soft:focus {
+  outline: 2px solid #cbd5e1;
+  outline-offset: 2px;
+}
+
+/* Gentle transitions for better UX */
+.transition-soft {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Softer shadows */
+.shadow-soft {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-soft-md {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+/* Gentle hover effects */
+.hover-lift:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Typography improvements for reading */
+.text-reading {
+  line-height: 1.7;
+  letter-spacing: 0.025em;
+}
+
+/* Comfortable spacing */
+.space-comfortable > * + * {
+  margin-top: 1.5rem;
+}
+
+/* Soft borders */
+.border-soft {
+  border-color: #e2e8f0;
+}
+
+.border-soft-focus:focus {
+  border-color: #cbd5e1;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+p {
+  line-height: 1.6;
+}
+
+/* Backdrop Blur Support */
+.backdrop-blur-fallback {
+  background-color: rgba(15, 23, 42, 0.8);
+}
+
+@supports (backdrop-filter: blur(10px)) {
+  .backdrop-blur-fallback {
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+  }
+}
+
+/* Enhanced Lesson Content Styles */
+.lesson-content {
+  /* Typography improvements */
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+.lesson-content h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  color: rgb(15 23 42);
+  border-bottom: 2px solid rgb(99 102 241);
+  padding-bottom: 0.5rem;
+}
+
+.dark .lesson-content h2 {
+  color: rgb(248 250 252);
+  border-bottom-color: rgb(79 70 229);
+}
+
+.lesson-content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: rgb(30 41 59);
+}
+
+.dark .lesson-content h3 {
+  color: rgb(226 232 240);
+}
+
+.lesson-content strong {
+  font-weight: 600;
+  color: rgb(15 23 42);
+}
+
+.dark .lesson-content strong {
+  color: rgb(248 250 252);
+}
+
+.lesson-content code {
+  background-color: rgb(241 245 249);
+  color: rgb(51 65 85);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.875rem;
+}
+
+.dark .lesson-content code {
+  background-color: rgb(51 65 85);
+  color: rgb(226 232 240);
+}
+
+.lesson-content ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  space-y: 0.25rem;
+}
+
+.lesson-content ol {
+  list-style-type: decimal;
+  margin-left: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  space-y: 0.25rem;
+}
+
+.lesson-content li {
+  margin-bottom: 0.5rem;
+  color: rgb(51 65 85);
+}
+
+.dark .lesson-content li {
+  color: rgb(203 213 225);
+}
+
+/* Citation Styles */
+.citation-superscript {
+  font-size: 0.75rem;
+  vertical-align: super;
+  color: rgb(37 99 235);
+  cursor: pointer;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.citation-superscript:hover {
+  color: rgb(29 78 216);
+  text-decoration: underline;
+}
+
+.dark .citation-superscript {
+  color: rgb(96 165 250);
+}
+
+.dark .citation-superscript:hover {
+  color: rgb(147 197 253);
+}
+
+.citation-error {
+  color: rgb(239 68 68);
+  background-color: rgb(254 242 242);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  border: 1px solid rgb(252 165 165);
+}
+
+.dark .citation-error {
+  color: rgb(248 113 113);
+  background-color: rgb(127 29 29);
+  border-color: rgb(185 28 28);
+}
+
+/* SVG Container Styles */
+.svg-container {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.svg-wrapper {
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(226 232 240);
+  background-color: rgb(255 255 255);
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.dark .svg-wrapper {
+  border-color: rgb(51 65 85);
+  background-color: rgb(30 41 59);
+}
+
+.svg-wrapper svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Bibliography Styles */
+.bibliography-placeholder {
+  margin-top: 3rem;
+  padding: 2rem;
+  border-top: 2px solid rgb(226 232 240);
+}
+
+.dark .bibliography-placeholder {
+  border-top-color: rgb(51 65 85);
+}
+
+/* Responsive adjustments for lesson content */
+@media (max-width: 768px) {
+  .lesson-content {
+    font-size: 0.9rem;
+  }
+  
+  .lesson-content h2 {
+    font-size: 1.75rem;
+    margin-top: 2rem;
+  }
+  
+  .lesson-content h3 {
+    font-size: 1.25rem;
+    margin-top: 1.5rem;
+  }
+  
+  .svg-wrapper {
+    padding: 1rem;
+  }
+}
+
+/* Focus styles for accessibility */
+.citation-superscript:focus {
+  outline: 2px solid rgb(37 99 235);
+  outline-offset: 2px;
+  border-radius: 0.125rem;
+}
+
+.dark .citation-superscript:focus {
+  outline-color: rgb(96 165 250);
+}
+
+/* Print styles */
+@media print {
+  .citation-superscript {
+    color: black;
+    text-decoration: none;
+  }
+  
+  .svg-wrapper {
+    border: 1px solid black;
+    box-shadow: none;
+  }
+  
+  .lesson-content {
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+}

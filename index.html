@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" class="light-theme">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChemPrep9 Online Course</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: 'var(--color-primary)',
+            'primary-hover': 'var(--color-primary-hover)',
+            secondary: 'var(--color-secondary)', // #64748b
+            accent: 'var(--color-accent)',
+            'card-bg': 'var(--color-card-bg)',
+            background: 'var(--color-background)',
+            'text-light': 'var(--color-text-light)',
+            'text-muted': 'var(--color-text-muted)',
+            'border-color': 'var(--color-border)',
+            'success': 'var(--color-success)',
+            'danger': 'var(--color-danger)',
+            // Add our custom chemistry and soft color palettes
+            chemistry: {
+              50: '#f8fafc',
+              100: '#f1f5f9',
+              200: '#e2e8f0',
+              300: '#cbd5e1',
+              400: '#94a3b8',
+              500: '#64748b',
+              600: '#475569',
+              700: '#334155',
+              800: '#1e293b',
+              900: '#0f172a',
+            },
+            soft: {
+              blue: {
+                50: '#f0f9ff',
+                100: '#e0f2fe',
+                200: '#bae6fd',
+                300: '#7dd3fc',
+                400: '#38bdf8',
+                500: '#0ea5e9',
+              },
+              sage: {
+                50: '#f6f7f6',
+                100: '#e8ebe8',
+                200: '#d1d7d1',
+                300: '#adb8ad',
+                400: '#7a8a7a',
+                500: '#5a6b5a',
+              },
+              lavender: {
+                50: '#faf9ff',
+                100: '#f3f1ff',
+                200: '#e9e5ff',
+                300: '#d4cbff',
+                400: '#b4a1ff',
+                500: '#9176ff',
+              },
+              peach: {
+                50: '#fff8f5',
+                100: '#ffede5',
+                200: '#fdd5c0',
+                300: '#fbb896',
+                400: '#f7926a',
+                500: '#f36d43',
+              },
+              mint: {
+                50: '#f0fdf4',
+                100: '#dcfce7',
+                200: '#bbf7d0',
+                300: '#86efac',
+                400: '#4ade80',
+                500: '#22c55e',
+              },
+              rose: {
+                50: '#fff1f2',
+                100: '#ffe4e6',
+                200: '#fecdd3',
+                300: '#fda4af',
+                400: '#fb7185',
+                500: '#f43f5e',
+              }
+            }
+          }
+        }
+      },
+    }
+  </script>
+  <style type="text/tailwindcss">
+    body {
+      background-color: var(--color-background);
+      color: var(--color-text-light);
+      @apply antialiased;
+    }
+    /* Fallback basic styling for prose elements if @tailwindcss/typography is not active */
+    .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+      /* Custom styling for headings is mostly handled by prose-headings:text-accent in App.tsx */
+    }
+    .prose strong {
+      /* Custom styling for strong is mostly handled by prose-strong:text-text-light in App.tsx */
+    }
+    .prose a {
+      /* Custom styling for 'a' is mostly handled by prose-a:text-primary in App.tsx */
+    }
+    /* Add a scrollbar style for better aesthetics in dark mode */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--color-scrollbar-track);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--color-scrollbar-thumb);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--color-scrollbar-thumb-hover);
+    }
+  </style>
+  <style>
+    :root {
+      --color-background: #1e293b; /* slate-800 */
+      --color-card-bg: #334155; /* slate-700 */
+      --color-text-light: #f1f5f9; /* slate-100 */
+      --color-text-muted: #94a3b8; /* slate-400 */
+      --color-primary: #0284c7; /* sky-600 */
+      --color-primary-hover: #0369a1; /* sky-700 */
+      --color-secondary: #64748b; /* slate-500 */
+      --color-accent: #10b981; /* emerald-500 */
+      --color-border: #475569; /* slate-600 */
+      --color-success: #22c55e; /* green-500 */
+      --color-danger: #ef4444; /* red-500 */
+      --color-scrollbar-track: #2c3e50;
+      --color-scrollbar-thumb: #4a5568;
+      --color-scrollbar-thumb-hover: #718096;
+    }
+
+    html.light-theme {
+      --color-background: #f8fafc; /* slate-50 */
+      --color-card-bg: #ffffff; /* white */
+      --color-text-light: #0f172a; /* slate-900 */
+      --color-text-muted: #64748b; /* slate-500 */
+      --color-primary: #0ea5e9; /* sky-500 */
+      --color-primary-hover: #0284c7; /* sky-600 */
+      --color-secondary: #94a3b8; /* slate-400 */
+      --color-accent: #10b981; /* emerald-500 */
+      --color-border: #e2e8f0; /* slate-200 */
+      --color-success: #16a34a; /* green-600 */
+      --color-danger: #dc2626; /* red-600 */
+      --color-scrollbar-track: #e2e8f0; /* slate-200 */
+      --color-scrollbar-thumb: #cbd5e1; /* slate-300 */
+      --color-scrollbar-thumb-hover: #94a3b8; /* slate-400 */
+    }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.6.2"
+  }
+}
+</script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html><link rel="stylesheet" href="index.css">
+<script src="index.tsx" type="module"></script>

@@ -1,0 +1,89 @@
+{
+  "name": "chemprep9-online-course",
+  "description": "Professional Chemistry Learning Platform - Phase 2B 25% Complete (Units 01-02 Enhanced to 4.8/5)",
+  "version": "2.2.0",
+  "private": true,
+  "type": "module",
+  "keywords": [
+    "chemistry",
+    "education",
+    "react",
+    "typescript",
+    "citations",
+    "accessibility",
+    "atomic-structure"
+  ],
+  "repository": {
+    "type": "local",
+    "url": "/Users/matiasmirvois/Desktop/chemprep9-online-course/"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint . --ext ts,tsx --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@headlessui/react": "^2.2.4",
+    "@heroicons/react": "^2.2.0",
+    "@tailwindcss/postcss": "^4.1.8",
+    "clsx": "^2.1.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.6.2",
+    "tailwind-merge": "^3.3.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.28.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.6",
+    "@typescript-eslint/eslint-plugin": "^8.33.1",
+    "@typescript-eslint/parser": "^8.33.1",
+    "@vitejs/plugin-react": "^4.5.1",
+    "@vitest/ui": "^3.2.2",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.28.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.2.0",
+    "jsdom": "^26.1.0",
+    "postcss": "^8.5.4",
+    "prettier": "^3.5.3",
+    "tailwindcss": "^4.1.8",
+    "typescript": "~5.7.2",
+    "vite": "^6.2.0",
+    "vitest": "^3.2.2"
+  },
+  "project_status": {
+    "phase": "2B_Active",
+    "overall_progress": "50%",
+    "last_updated": "2025-06-06",
+    "achievements": {
+      "phase_1": "95% - Foundation complete",
+      "phase_1_5": "100% - Technical infrastructure complete",
+      "phase_2a": "100% - Unit 01 pilot successful (4.8/5 quality)",
+      "phase_2b": "25% - Unit 02 complete (4.8/5 quality), methodology validated"
+    },
+    "enhanced_units": {
+      "unit_01": "Introduction to Chemistry - 4.8/5 quality, 20+ citations",
+      "unit_02": "Atomic Structure - 4.8/5 quality, 23+ citations"
+    },
+    "technical_status": {
+      "tests_passing": "35/35",
+      "dev_server": "localhost:5176",
+      "infrastructure": "Complete (dev tools + citations + UI)",
+      "methodology": "Proven 2.5-hour per unit workflow"
+    },
+    "next_milestone": "Unit 03 - Periodic Table Implementation"
+  }
+}

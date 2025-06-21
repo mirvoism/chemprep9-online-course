@@ -1,0 +1,260 @@
+# ChemPrep9 Design System 2025
+
+## 🎨 **Design Philosophy**
+
+Our 2025 design system follows modern UX principles with chemistry-themed elements, ensuring accessibility, consistency, and engaging user experiences.
+
+### **Core Principles**
+- **Clean & Modern**: Minimal gradients, solid backgrounds, clear typography
+- **Accessible**: WCAG-AA compliant with high contrast ratios
+- **Chemistry-Themed**: Subtle science iconography and semantic naming
+- **Dark Mode Native**: Consistent experience across light and dark themes
+- **Performance-First**: Optimized for fast loading and smooth interactions
+
+---
+
+## 🎯 **Color System - 60-30-10 Rule**
+
+### **Primary Colors (60% - Navy)**
+```css
+--primary-50: #f0f4f8
+--primary-500: #2563a0  /* Base navy */
+--primary-600: #1e4d7a  /* Button backgrounds */
+--primary-700: #183858  /* Button hover states */
+--primary-900: #0E2A47  /* Deep navy */
+```
+
+### **Secondary Colors (30% - Teal)**
+```css
+--secondary-50: #f0fdfa
+--secondary-500: #14b8a6  /* Base teal */
+--secondary-600: #0d9488  /* Interactive elements */
+--secondary-900: #1B8A8F  /* Deep teal */
+```
+
+### **Accent Colors (10% - Coral)**
+```css
+--accent-50: #fef7f0
+--accent-500: #F76C5E   /* Base coral - used sparingly */
+--accent-600: #ea4c3d   /* Hover states */
+--accent-900: #962724   /* Deep coral */
+```
+
+### **Updated Button Color Strategy**
+- **Primary Actions**: `bg-primary-600` (Navy blue) - High contrast, professional
+- **Secondary Actions**: `bg-secondary-500` (Teal) - Supporting interactions  
+- **Accent Elements**: `accent-500` (Coral) - Reserved for special highlights only
+
+### **Critical Button Visibility Fix**
+When Tailwind classes fail to render properly, use inline styles as fallback:
+```tsx
+// Guaranteed visibility approach
+style={{ 
+  backgroundColor: '#1e4d7a', // Navy blue
+  color: '#ffffff',           // White text  
+  border: 'none'
+}}
+```
+
+---
+
+## 🌗 **Dark Mode System**
+
+### **Background Hierarchy**
+```css
+/* Light Mode */
+--bg-primary: #f8fafc    /* Main backgrounds */
+--bg-surface: #ffffff    /* Card backgrounds */
+--bg-subtle: #f1f5f9     /* Subtle areas */
+
+/* Dark Mode */
+--bg-primary: #0f172a    /* Main backgrounds */
+--bg-surface: #1e293b    /* Card backgrounds */
+--bg-subtle: #334155     /* Subtle areas */
+```
+
+### **Unified Theme Implementation**
+- **No gradients** on main backgrounds - solid colors only
+- **Consistent card styling**: `bg-white dark:bg-slate-800`
+- **Proper text contrast**: `text-slate-900 dark:text-slate-100`
+- **Semantic borders**: `border-slate-200 dark:border-slate-700`
+
+---
+
+## 📐 **Typography Scale**
+
+### **Font Hierarchy**
+```css
+/* Main Headings */
+.text-4xl { font-size: 2rem; }      /* 32px - Hero titles */
+.text-2xl { font-size: 1.5rem; }    /* 24px - Section headings */
+.text-base { font-size: 1rem; }     /* 16px - Body text */
+.text-sm { font-size: 0.875rem; }   /* 14px - Metadata */
+```
+
+### **Font Families**
+- **Headings**: `Poppins` - Clean, modern sans-serif
+- **Body**: `Inter` - Optimized for readability
+- **Code**: `JetBrains Mono` - Programming contexts
+
+---
+
+## 🧪 **Chemistry Theme Elements**
+
+### **Unit Color Coding**
+```css
+Unit 1: Blue   (#3b82f6)  - Introduction to Chemistry     ⚗️
+Unit 2: Purple (#8b5cf6)  - Atomic Structure             ⚛️  
+Unit 3: Green  (#10b981)  - Periodic Table               🧪
+Unit 4: Orange (#f97316)  - Chemical Bonding             🔗
+Unit 5: Green  (#059669)  - Stoichiometry                ⚖️
+Unit 10: Pink  (#ec4899)  - Advanced Reactions           🧬
+```
+
+### **Interactive States**
+- **Hover**: Slight color darkening + subtle shadow
+- **Active**: Scale transform (0.95)
+- **Focus**: Ring outline with brand color
+- **Disabled**: 50% opacity + cursor-not-allowed
+
+---
+
+## 🎯 **Component Standards**
+
+### **Buttons**
+```tsx
+// Primary Action - Navy blue for high importance
+<button className="bg-primary-600 hover:bg-primary-700 text-white">
+
+// Secondary Action - Teal for supporting actions  
+<button className="bg-secondary-500 hover:bg-secondary-600 text-white">
+
+// Outline Style - Subtle interactions
+<button className="border border-slate-300 hover:bg-slate-50">
+```
+
+### **Cards**
+```tsx
+// Standard Card - Clean backgrounds
+<div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm">
+
+// Subtle Card - For nested content
+<div className="bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg">
+```
+
+### **Navigation**
+```tsx
+// Active State - Clear visual hierarchy
+<button className={`${isActive ? 'bg-primary-600 text-white' : 'text-slate-600 hover:bg-slate-100'}`}>
+```
+
+---
+
+## ♿ **Accessibility Standards**
+
+### **Color Contrast**
+- **Text on backgrounds**: Minimum 4.5:1 ratio
+- **Interactive elements**: 3:1 ratio minimum
+- **Focus indicators**: High contrast rings
+
+### **Keyboard Navigation**
+- **Tab order**: Logical flow through interface
+- **Focus management**: Visible focus states
+- **Shortcuts**: Intuitive key combinations
+
+### **Motion & Animation**
+- **Respect reduced motion**: `prefers-reduced-motion: reduce`
+- **Purposeful animations**: No decorative motion
+- **Performance**: 60fps smooth transitions
+
+---
+
+## 📱 **Responsive Design**
+
+### **Breakpoint Strategy**
+```css
+sm:  640px   /* Small tablets */
+md:  768px   /* Tablets */
+lg:  1024px  /* Small laptops */
+xl:  1280px  /* Desktops */
+2xl: 1536px  /* Large screens */
+```
+
+### **Layout Patterns**
+- **Mobile-first**: Progressive enhancement
+- **Flexible grids**: CSS Grid + Flexbox
+- **Fluid typography**: Responsive font scaling
+
+---
+
+## 🔧 **Implementation Notes**
+
+### **Theme Consistency Fixes (Latest)**
+- ✅ **Unified backgrounds**: Removed all problematic gradients
+- ✅ **Button visibility**: Fixed white-on-white text issues with inline styles
+- ✅ **Dark mode harmony**: Consistent component styling
+- ✅ **Text contrast**: Proper slate color variants
+- ✅ **Fallback strategy**: Inline styles when Tailwind classes fail
+
+### **CSS Variables**
+```css
+:root {
+  --color-primary: #2563a0;
+  --color-secondary: #14b8a6;
+  --color-accent: #F76C5E;
+}
+
+[data-theme="dark"] {
+  --color-bg: #0f172a;
+  --color-surface: #1e293b;
+  --color-text: #f1f5f9;
+}
+```
+
+### **Tailwind Integration**
+```javascript
+// tailwind.config.js
+extend: {
+  colors: {
+    primary: { /* navy palette */ },
+    secondary: { /* teal palette */ },
+    accent: { /* coral palette */ }
+  }
+}
+```
+
+---
+
+## 🚀 **Performance Optimizations**
+
+### **Loading Strategy**
+- **Lazy loading**: Components and lesson data
+- **Code splitting**: Route-based chunks
+- **Image optimization**: WebP format, responsive sizing
+
+### **Animation Performance**
+- **Hardware acceleration**: `transform` and `opacity` only
+- **Reduced motion**: Accessibility considerations
+- **Smooth interactions**: 60fps target
+
+---
+
+## 📋 **Usage Guidelines**
+
+### **Do's**
+✅ Use primary navy for main actions
+✅ Maintain consistent spacing (8pt grid)
+✅ Test in both light and dark modes
+✅ Ensure proper color contrast
+✅ Use semantic HTML elements
+
+### **Don'ts**
+❌ Don't use gradients for main backgrounds
+❌ Don't mix coral accent with every element
+❌ Don't forget dark mode variants
+❌ Don't skip accessibility testing
+❌ Don't break the typography scale
+
+---
+
+*Last updated: December 2024 - Version 2.5.0* 

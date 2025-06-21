@@ -1,0 +1,6 @@
+{
+  "name": "ChemPrep9 Online Course",
+  "description": "An interactive online bridge course for Regents Chemistry, featuring lessons, quizzes, and PHeT simulations, built with React and Tailwind CSS.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}
