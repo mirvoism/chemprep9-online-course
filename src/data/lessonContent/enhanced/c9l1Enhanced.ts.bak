@@ -30,7 +30,7 @@ export const c9l1Enhanced: Lesson = {
         'Investigate strong and weak acids and bases. Compare molecular behavior, conductivity, and pH for different concentrations and solution types.',
     },
   ],
-  narrative: \`## **Acids, Bases & Salts: Chemical Properties and Quantitative Analysis**
+  narrative: `## **Acids, Bases & Salts: Chemical Properties and Quantitative Analysis**
 
 \${citationInline('1')} Acids and bases represent two fundamental classes of chemical compounds that play crucial roles in biological systems, industrial processes, and environmental chemistry. \${citationInline('2')} Understanding their properties, behavior, and quantitative relationships forms the foundation for analytical chemistry, biochemistry, and materials science applications.
 

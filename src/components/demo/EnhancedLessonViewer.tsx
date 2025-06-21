@@ -1,12 +1,13 @@
 import React, { useState, useMemo } from 'react';
-import { getInteractiveComponent, hasInteractiveComponent } from "../interactive/InteractiveRegistry";
+// import { getInteractiveComponent, hasInteractiveComponent } from "../interactive/InteractiveRegistry";
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { ProgressBar } from '../ui/ProgressBar';
 import { c1l1Enhanced } from '../../data/lessonContent/enhanced/c1l1Enhanced';
 import { Lesson } from '../../../types';
 import { processLessonContent, processPracticeText } from '../../utils/contentProcessor';
-import { unit01Questions } from '../../data/practiceQuestions/unit01Questions';
+import { getQuestionBank } from '../../data/practiceQuestions';
+import { PracticeSection } from '../practice/PracticeSection';
 interface LessonViewerProps {
   lesson: Lesson;
   onBack: () => void;
@@ -261,105 +262,86 @@ export const EnhancedLessonViewer: React.FC<LessonViewerProps> = ({ lesson, onBa
         );
 
       case 'practice':
-        return (
-          <div className="space-y-8">
-            {/* Practice Problems */}
-            <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-8 border border-slate-200 dark:border-slate-600">
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-6 flex items-center gap-3">
-                <span className="text-orange-500">✏️</span>
-                Practice Problems
-              </h3>
+        const questionBank = getQuestionBank(lesson.unit);
+        
+        if (questionBank && questionBank.questions.length > 0) {
+          return (
+            <div className="space-y-8">
+              <PracticeSection 
+                questions={questionBank.questions}
+                unitTitle={questionBank.title}
+                onComplete={(stats) => {
+                  console.log('Practice completed:', stats);
+                  // Could add progress tracking here
+                }}
+              />
+              
+              {/* Navigation */}
+              <div className="flex justify-between">
+                <button
+                  onClick={() => setCurrentSection('interactive')}
+                  className="px-6 py-3 bg-slate-100 dark:bg-slate-600 hover:bg-slate-200 dark:hover:bg-slate-500 text-slate-900 dark:text-slate-100 rounded-xl transition-all duration-300"
+                >
+                  ← Previous
+                </button>
+                <button
+                  onClick={() => alert('Lesson completed! 🎉')}
+                  className="px-6 py-3 font-semibold rounded-xl hover:shadow-lg transition-all duration-300"
+                  style={{ 
+                    backgroundColor: '#1e4d7a', 
+                    color: '#ffffff',
+                    border: 'none'
+                  }}
+                  onMouseEnter={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#183858'}
+                  onMouseLeave={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#1e4d7a'}
+                >
+                  Complete Lesson ✨
+                </button>
+              </div>
+            </div>
+          );
+        } else {
+          return (
+            <div className="space-y-8">
+              {/* No Question Bank Available */}
+              <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-8 border border-slate-200 dark:border-slate-600">
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-6 flex items-center gap-3">
+                  <span className="text-orange-500">✏️</span>
+                  Practice Problems
+                </h3>
 
-              {lesson.practiceProblems && lesson.practiceProblems.length > 0 ? (
-                <div className="space-y-6">
-                  <div className="flex items-center justify-between">
-                    <span className="text-slate-700 dark:text-slate-300">
-                      Problem {currentPractice + 1} of {lesson.practiceProblems?.length}
-                    </span>
-                    <div className="flex gap-2">
-                      <button
-                        onClick={() => setCurrentPractice(Math.max(0, currentPractice - 1))}
-                        disabled={currentPractice === 0}
-                        className="px-4 py-2 bg-slate-100 dark:bg-slate-600 hover:bg-slate-200 dark:hover:bg-slate-500 disabled:opacity-50 disabled:cursor-not-allowed text-slate-900 dark:text-slate-100 rounded-lg transition-all duration-300"
-                      >
-                        Previous
-                      </button>
-                      <button
-                        onClick={() => setCurrentPractice(Math.min((lesson.practiceProblems?.length ?? 0) - 1, currentPractice + 1))}
-                        disabled={currentPractice === (lesson.practiceProblems?.length ?? 0) - 1}
-                        className="px-4 py-2 bg-slate-100 dark:bg-slate-600 hover:bg-slate-200 dark:hover:bg-slate-500 disabled:opacity-50 disabled:cursor-not-allowed text-slate-900 dark:text-slate-100 rounded-lg transition-all duration-300"
-                      >
-                        Next
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="bg-white dark:bg-slate-700 rounded-xl p-6 border border-slate-200 dark:border-slate-500">
-                    <div className="mb-4">
-                      <h4 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-3">Question</h4>
-                      <div 
-                        className="text-slate-700 dark:text-slate-300 leading-relaxed"
-                        dangerouslySetInnerHTML={{
-                          __html: processPracticeText(lesson.practiceProblems?.[currentPractice]?.question || 'Loading question...')
-                        }}
-                      />
-                    </div>
-
-                    {showAnswers && lesson.practiceProblems?.[currentPractice]?.answer && (
-                      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
-                        <h5 className="text-green-700 dark:text-green-300 font-semibold mb-2">Answer:</h5>
-                        <div 
-                          className="text-slate-700 dark:text-slate-300"
-                          dangerouslySetInnerHTML={{
-                            __html: processPracticeText(lesson.practiceProblems?.[currentPractice].answer || '')
-                          }}
-                        />
-                      </div>
-                    )}
-
-                    <div className="mt-6">
-                      <button
-                        onClick={() => setShowAnswers(!showAnswers)}
-                        className="px-6 py-3 bg-secondary-500 hover:bg-secondary-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300"
-                      >
-                        {showAnswers ? 'Hide Answer' : 'Show Answer'}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ) : (
                 <div className="text-center py-12">
                   <div className="text-6xl mb-4">📝</div>
-                  <p className="text-slate-700 dark:text-slate-300 text-lg">Practice problems coming soon!</p>
+                  <p className="text-slate-700 dark:text-slate-300 text-lg">Practice questions for Unit {lesson.unit} coming soon!</p>
                   <p className="text-slate-600 dark:text-slate-400">Interactive quizzes and exercises will be available here.</p>
                 </div>
-              )}
-            </div>
+              </div>
 
-            {/* Navigation */}
-            <div className="flex justify-between">
-              <button
-                onClick={() => setCurrentSection('interactive')}
-                className="px-6 py-3 bg-slate-100 dark:bg-slate-600 hover:bg-slate-200 dark:hover:bg-slate-500 text-slate-900 dark:text-slate-100 rounded-xl transition-all duration-300"
-              >
-                ← Previous
-              </button>
-              <button
-                onClick={() => alert('Lesson completed! 🎉')}
-                className="px-6 py-3 font-semibold rounded-xl hover:shadow-lg transition-all duration-300"
-                style={{ 
-                  backgroundColor: '#1e4d7a', 
-                  color: '#ffffff',
-                  border: 'none'
-                }}
-                onMouseEnter={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#183858'}
-                onMouseLeave={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#1e4d7a'}
-              >
-                Complete Lesson ✨
-              </button>
+              {/* Navigation */}
+              <div className="flex justify-between">
+                <button
+                  onClick={() => setCurrentSection('interactive')}
+                  className="px-6 py-3 bg-slate-100 dark:bg-slate-600 hover:bg-slate-200 dark:hover:bg-slate-500 text-slate-900 dark:text-slate-100 rounded-xl transition-all duration-300"
+                >
+                  ← Previous
+                </button>
+                <button
+                  onClick={() => alert('Lesson completed! 🎉')}
+                  className="px-6 py-3 font-semibold rounded-xl hover:shadow-lg transition-all duration-300"
+                  style={{ 
+                    backgroundColor: '#1e4d7a', 
+                    color: '#ffffff',
+                    border: 'none'
+                  }}
+                  onMouseEnter={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#183858'}
+                  onMouseLeave={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#1e4d7a'}
+                >
+                  Complete Lesson ✨
+                </button>
+              </div>
             </div>
-          </div>
-        );
+          );
+        }
 
       default:
         return null;

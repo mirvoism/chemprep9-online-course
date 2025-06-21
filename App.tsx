@@ -30,9 +30,11 @@ const loadLessonData = async (lessonId: string) => {
     case 'c8l1':
       return (await import('./src/data/lessonContent/enhanced/c8l1Enhanced')).c8l1Enhanced;
     case 'c9l1':
-      return (await import('./src/data/lessonContent/enhanced/c9l1Enhanced')).c9l1Enhanced;
+      // return (await import('./src/data/lessonContent/enhanced/c9l1Enhanced')).c9l1Enhanced;
+      throw new Error('Unit 9 content temporarily unavailable');
     case 'c10l1':
-      return (await import('./src/data/lessonContent/enhanced/c10l1Enhanced')).c10l1Enhanced;
+      // return (await import('./src/data/lessonContent/enhanced/c10l1Enhanced')).c10l1Enhanced;
+      throw new Error('Unit 10 content temporarily unavailable');
     case 'c11l1':
       return (await import('./src/data/lessonContent/enhanced/c11l1Enhanced')).c11l1Enhanced;
     case 'c12l1':
